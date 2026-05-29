@@ -9,6 +9,7 @@ import { FeatureStrip } from "@/components/FeatureStrip";
 import { FlashSaleInfo, FlashSaleProducts } from "@/components/FlashSale";
 import { ProductCard } from "@/components/ProductCard";
 import { PromoBanners } from "@/components/PromoBanners";
+import { BrandStrip } from "@/components/BrandStrip";
 import { useDBValue } from "@/lib/db";
 import { Product } from "@/lib/types";
 import Link from "next/link";
@@ -132,6 +133,8 @@ export default function Home() {
             </div>
           </div>
         )}
+
+        <BrandStrip />
 
         {techGadgets.length > 0 && (
           <div className="mb-16 relative group/tech">

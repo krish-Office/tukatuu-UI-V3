@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { MobileNav } from "@/components/MobileNav";
 import { Footer } from "@/components/Footer";
@@ -20,6 +20,23 @@ export default function ProductsPage() {
     minPrice: 0,
     maxPrice: 500
   });
+
+  // Parse brand and category query parameters from URL safely on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const brandParam = params.get("brand");
+      const categoryParam = params.get("category");
+      
+      if (brandParam || categoryParam) {
+        setFilters(prev => ({
+          ...prev,
+          selectedBrands: brandParam ? [brandParam] : prev.selectedBrands,
+          selectedCategories: categoryParam ? [categoryParam] : prev.selectedCategories
+        }));
+      }
+    }
+  }, []);
 
   const [sortBy, setSortBy] = useState<string>("Featured");
 
