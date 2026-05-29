@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  
+  --color-mint-50: #f4fbf7;
+  --color-mint-100: #e2f1e8;
+  --color-mint-150: #d8ece0;
+  --color-mint-200: #cce7d5;
+  --color-mint-250: #bce1c8;
+  --color-mint-300: #aaddbc;
+  --color-mint-400: #88cfa0;
+  --color-mint-500: #66c085;
+  --color-mint-600: #44a565;
+  --color-mint-650: #388c55;
+  --color-mint-655: #33824f;
+  --color-mint-700: #2d7345;
+  --color-mint-750: #246039;
+  --color-mint-800: #1b4d2d;
+  --color-mint-850: #164226;
+  --color-mint-900: #11361f;
+  --color-mint-950: #081d10;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* Matching the exact soft mint background from screenshot */
+  --background: #E2F1E8; 
+  /* Charcoal green for text */
+  --foreground: #11361f;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Base custom classes for glassmorphism */
+@utility glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Premium shimmering wave skeleton animation */
+@utility shimmer {
+  background: linear-gradient(90deg, #e2f1e8 25%, #f4fbf7 50%, #e2f1e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer-anim 1.6s infinite linear;
+}
+
+@keyframes shimmer-anim {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
